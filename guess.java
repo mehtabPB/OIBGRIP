@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 class guess{
-
+//Hello world
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Random rand = new Random();
@@ -42,4 +42,5 @@ class guess{
         }
         System.out.println("Your total score is: " + totalScore);
     }
+
 }
