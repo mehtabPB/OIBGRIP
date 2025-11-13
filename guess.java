@@ -1,62 +1,43 @@
-import java.util.Scanner;
-import java.util.Random;
+import random
 
-class guess{
-//Hello world 17
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        Random rand = new Random();
-        int rounds = 3; // number of rounds
-        int attemptsPerRound = 5; // number of attempts per round
-        int totalScore = 0; // keep track of total score
+def number_guessing_game():
+    rounds = 3
+    attempts_per_round = 5
+    total_score = 0
 
-        for (int round = 1; round <= rounds; round++) {
-            int numberToGuess = rand.nextInt(100) + 1; // generate a random number between 1 and 100
-            int guess;
-            int attempts = 0; // keep track of the number of attempts
-            int roundScore = 100; //initialize score for each round
+    for round_num in range(1, rounds + 1):
+        number_to_guess = random.randint(1, 100)
+        round_score = 100
+        attempts = 0
 
-            System.out.println("Round " + round + " of " + rounds + ": ");
-            System.out.println("I'm thinking of a number between 1 and 100. Can you guess it?");
+        print(f"\nRound {round_num} of {rounds}")
+        print("I'm thinking of a number between 1 and 100. Can you guess it?")
 
-            while (attempts < attemptsPerRound) {
-                System.out.print("Enter your guess: ");
-                guess = input.nextInt();
-                attempts++; // increment the number of attempts
+        while attempts < attempts_per_round:
+            try:
+                guess = int(input("Enter your guess: "))
+            except ValueError:
+                print("Please enter a valid number!")
+                continue
 
-                if (guess == numberToGuess) {
-                    System.out.println("Congratulations! You guessed the number in " + attempts + " attempts!");
-                    roundScore = roundScore - (attempts*10); // decrease score based on attempts
-                    System.out.println("Your round score is: " + roundScore);
-                    break;
-                } else if (guess < numberToGuess) {
-                    System.out.println("Too low! Try again.");
-                } else {
-                    System.out.println("Too high! Try again.");
-                }
-            }
-            if(attempts == attemptsPerRound) {
-                System.out.println("Sorry you have exceeded the number of attempts");
-            }
-            totalScore += roundScore;
-        }
-        System.out.println("Your total score is: " + totalScore);
-    }
+            attempts += 1
 
-}
+            if guess == number_to_guess:
+                print(f"🎉 Congratulations! You guessed it in {attempts} attempts!")
+                round_score -= (attempts * 10)
+                print(f"Your round score: {round_score}")
+                break
+            elif guess < number_to_guess:
+                print("Too low! Try again.")
+            else:
+                print("Too high! Try again.")
 
+        if attempts == attempts_per_round and guess != number_to_guess:
+            print(f"😢 Out of attempts! The correct number was {number_to_guess}.")
 
+        total_score += round_score
 
+    print(f"\n Game Over! Your total score: {total_score}")
 
-
-
-
-
-
-
-
-
-
-
-
-
+if __name__ == "__main__":
+    number_guessing_game()
