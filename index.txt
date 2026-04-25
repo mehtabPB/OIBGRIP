@@ -1,0 +1,2 @@
+"Q: What is Java?" 
+"A: Java is a programming language." 
